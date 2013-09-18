@@ -11,7 +11,7 @@ class Catalog_module extends Module
 	public function method_list_main_menu_items()
 	{
 		$data = array();
-		App::i()->_catalog()->getRootCatalogues($levels = 3);
+		$data['catalogues'] = App::i()->_catalog()->getCataloguesTree();
 		return $data;
 	}
 
@@ -31,13 +31,14 @@ class Catalog_module extends Module
 	 *
 	 * @return array
 	 */
-	public function  method_list_catalog_childrens()
+	public function   method_list_catalog_menu_items()
 	{
 		$data = array();
 		$currentCatalogId = App::i()->_request()->getUriPartByIdx(1);
-		if(!is_numeric($currentCatalogId))
+		if (!is_numeric($currentCatalogId))
 			$currentCatalogId = App::i()->_catalog()->getCatalogIdByName($currentCatalogId);
-		App::i()->_catalog()->getChildrens($currentCatalogId);
+		$data['catalog'] = App::i()->_catalog()->getCatalogById($currentCatalogId);
+		$data['catalogues'] = App::i()->_catalog()->getCataloguesTree();
 		return $data;
 	}
 

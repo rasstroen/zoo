@@ -12,7 +12,7 @@ class Map
 		),
 		'catalog' => array(
 			'%s' => array(
-				'' => 'catalog/level1',
+				'' => 'catalog/level',
 			)
 		)
 	);

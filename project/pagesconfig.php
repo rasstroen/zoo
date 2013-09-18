@@ -43,15 +43,15 @@ $pagesconfig['index']['blocks'] = array(
 /**
  * Страница каталога первого уровня
  */
-$pagesconfig['catalog/level1'] = array();
-$pagesconfig['catalog/level1']['layout'] = 'catalog_level1';
-$pagesconfig['catalog/level1']['js'] = array();
-$pagesconfig['catalog/level1']['css'] = array(
+$pagesconfig['catalog/level'] = array();
+$pagesconfig['catalog/level']['layout'] = 'catalog_level';
+$pagesconfig['catalog/level']['js'] = array();
+$pagesconfig['catalog/level']['css'] = array(
 	'index'
 );
-$pagesconfig['catalog/level1']['blocks'] = array(
+$pagesconfig['catalog/level']['blocks'] = array(
 	'left' => array(
-		array('name' => 'catalog', 'action' => 'list', 'mode' => 'catalog_childrens'),
+		array('name' => 'catalog', 'action' => 'list', 'mode' => 'catalog_menu_items'),
 	),
 	'content' => array(
 		array('name' => 'catalog', 'action' => 'list', 'mode' => 'catalog_top'),

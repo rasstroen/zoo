@@ -1,7 +1,13 @@
 <?php
+/**
+ * Class Database
+ * @property PDODatabase web
+ */
 class Database
 {
+
 	/**
+	 *
 	 * @var array of Database
 	 */
 	private $connections = array();
@@ -24,6 +30,6 @@ class Database
 			throw new ApplicationException('No config for db server '.$dbname);
 		}
 		$options = array();
-		return $this->connections[$dbname] = new PDO('mysql:host='.$dbconfig['dbserver'].';dbname='.$dbconfig['dbname'],$dbconfig['username'],$dbconfig['password'],$options);
+		return $this->connections[$dbname] = new PDODatabase('mysql:host='.$dbconfig['dbserver'].';dbname='.$dbconfig['dbname'],$dbconfig['username'],$dbconfig['password'],$options);
 	}
 }
