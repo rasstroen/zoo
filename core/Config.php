@@ -20,6 +20,7 @@ class Config {
             'core/Modules',
             'core/Classes/',
             'core/Classes/Catalog/',
+	        'core/Classes/Cron/',
         ),
 		/**
 		 * бд
