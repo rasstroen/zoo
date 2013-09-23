@@ -29,7 +29,7 @@ $pagesconfig = array();
 $pagesconfig['index'] = array();
 $pagesconfig['index']['layout'] = 'index';
 $pagesconfig['index']['js'] = array(
-	'cookie','menu'
+
 );
 $pagesconfig['index']['css'] = array(
 	'index'

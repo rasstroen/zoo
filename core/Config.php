@@ -19,6 +19,7 @@ class Config {
             'core/Misc',
             'core/Modules',
             'core/Classes/',
+	        'core/Classes/Geo/',
             'core/Classes/Catalog/',
 	        'core/Classes/Cron/',
 			'core/Classes/Sell/',

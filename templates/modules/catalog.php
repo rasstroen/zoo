@@ -4,7 +4,7 @@ function tp_catalog_list_main_menu_items(ModuleData $data)
 	$catalogues = $data->getRaw('catalogues');
 	if (is_array($catalogues)) {
 		?>
-		<ul id="left_menu" class="level0 catalog_list_main_menu_items"><?php
+		<ul class="level0 catalog_list_main_menu_items"><?php
 		foreach ($catalogues[0] as $catalog) {
 			/*@var CatalogItem $catalog*/
 			_th_recursive_draw_catalogue_main_menu($catalog, $catalogues);
@@ -15,6 +15,7 @@ function tp_catalog_list_main_menu_items(ModuleData $data)
 
 function _th_recursive_draw_catalogue_main_menu(CatalogItem $catalog, $catalogues, $level = 1)
 {
+	print_r(App::i()->_geo()->getByIp());
 	?>
 	<li><a
 	href="<?php echo $catalog->getRelativeUrl() ?>"><?php echo htmlspecialchars($catalog->getTitle()); ?></a><?php

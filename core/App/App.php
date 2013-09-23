@@ -229,6 +229,14 @@ class App
 	}
 
 	/**
+	 * @return Geo
+	 */
+	public function _geo()
+	{
+		return $this->getComponent('Geo');
+	}
+
+	/**
 	 *
 	 * @return ResponseConfiguration
 	 */
