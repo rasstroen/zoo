@@ -4,7 +4,7 @@ function tp_catalog_list_main_menu_items(ModuleData $data)
 	$catalogues = $data->getRaw('catalogues');
 	if (is_array($catalogues)) {
 		?>
-		<ul class="level0 catalog_list_main_menu_items"><?php
+		<ul id="left_menu" class="level0 catalog_list_main_menu_items"><?php
 		foreach ($catalogues[0] as $catalog) {
 			/*@var CatalogItem $catalog*/
 			_th_recursive_draw_catalogue_main_menu($catalog, $catalogues);

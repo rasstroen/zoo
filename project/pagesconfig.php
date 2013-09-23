@@ -28,7 +28,9 @@ $pagesconfig = array();
  */
 $pagesconfig['index'] = array();
 $pagesconfig['index']['layout'] = 'index';
-$pagesconfig['index']['js'] = array();
+$pagesconfig['index']['js'] = array(
+	'cookie','menu'
+);
 $pagesconfig['index']['css'] = array(
 	'index'
 );
@@ -77,6 +79,23 @@ $pagesconfig['admin/main']['blocks'] = array(
 	),
 	'content' => array(
 		array('name' => 'admin', 'action' => 'list', 'mode' => 'admin_full_menu'),
+	),
+);
+/**
+ * Страница управления каталогами
+ */
+$pagesconfig['admin/catalog'] = array();
+$pagesconfig['admin/catalog']['layout'] = 'admin';
+$pagesconfig['admin/catalog']['js'] = array();
+$pagesconfig['admin/catalog']['css'] = array(
+	'admin'
+);
+$pagesconfig['admin/catalog']['blocks'] = array(
+	'left' => array(
+		array('name' => 'admin', 'action' => 'list', 'mode' => 'admin_menu_items'),
+	),
+	'content' => array(
+		array('name' => 'admin', 'action' => 'list', 'mode' => 'catalog_tree'),
 	),
 );
 /**

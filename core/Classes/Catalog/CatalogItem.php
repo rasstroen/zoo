@@ -23,6 +23,12 @@ class CatalogItem
 		return '/catalog/' . $this->getName();
 	}
 
+	public function getAdminUrl()
+	{
+		$this->load();
+		return '/admin/catalog/' . $this->id;
+	}
+
 	private function load()
 	{
 		if ($this->loaded) return true;

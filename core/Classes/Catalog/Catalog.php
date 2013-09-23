@@ -27,6 +27,10 @@ class Catalog
 		return $id ? $id : null;
 	}
 
+	/**
+	 * @param $catalogId
+	 * @return CatalogItem
+	 */
 	public function getCatalogById($catalogId)
 	{
 		$tree = $this->getCataloguesTreePlain();

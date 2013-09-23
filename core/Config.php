@@ -21,6 +21,9 @@ class Config {
             'core/Classes/',
             'core/Classes/Catalog/',
 	        'core/Classes/Cron/',
+			'core/Classes/Sell/',
+			'core/Classes/Sell/Animal/',
+			'core/Classes/Sell/Stuff/',
         ),
 		/**
 		 * бд

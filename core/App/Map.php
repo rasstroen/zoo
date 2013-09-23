@@ -8,7 +8,16 @@ class Map
 			'' => 'index',
 		),
 		'admin' => array(
-			'' => 'admin/main'
+			'' => 'admin/main',
+			'catalog' => array(
+				'' => 'admin/catalog',
+			),
+			'theme' => array(
+				'' => 'admin/theme',
+			) ,
+			'client' => array(
+				'' => 'admin/client'
+			)
 		),
 		'catalog' => array(
 			'%s' => array(

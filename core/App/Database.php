@@ -8,7 +8,7 @@ class Database
 
 	/**
 	 *
-	 * @var array of Database
+	 * @var PDODatabase[]
 	 */
 	private $connections = array();
 
@@ -23,13 +23,13 @@ class Database
 	 */
 	private function connect($dbname)
 	{
-		$dbconfigs = App::i()->config->get('db',array());
-		$dbconfig = isset($dbconfigs[$dbname])?$dbconfigs[$dbname]:null;
-		if(null === $dbconfig)
-		{
-			throw new ApplicationException('No config for db server '.$dbname);
+		$dbconfigs = App::i()->config->get('db', array());
+		$dbc = isset($dbconfigs[$dbname]) ? $dbconfigs[$dbname] : null;
+		if (null === $dbc) {
+			throw new ApplicationException('No config for db server ' . $dbname);
 		}
 		$options = array();
-		return $this->connections[$dbname] = new PDODatabase('mysql:host='.$dbconfig['dbserver'].';dbname='.$dbconfig['dbname'],$dbconfig['username'],$dbconfig['password'],$options);
+		$dsn = 'mysql:host=' . $dbc['dbserver'] . ';dbname=' . $dbc['dbname'];
+		return $this->connections[$dbname] = new PDODatabase($dsn, $dbc['username'], $dbc['password'], $options);
 	}
 }

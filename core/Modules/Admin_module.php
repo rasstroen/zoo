@@ -24,4 +24,11 @@ class Admin_module extends Module
 		$data = array();
 		return $data;
 	}
+
+	public function method_list_catalog_tree()
+	{
+		$data = array();
+		$data['catalogues'] = App::i()->_catalog()->getCataloguesTree();
+		return $data;
+	}
 }
