@@ -4,10 +4,12 @@ class PDODatabase
 	/**
 	 * @var PDO
 	 */
-	private $pdo;
+	private $pdo, $dsn;
+	private $queryNum = 0;
 
 	function __construct($dsn, $username, $password, $options)
 	{
+		$this->dsn = $dsn;
 		$this->pdo = new PDO($dsn, $username, $password, $options);
 	}
 
@@ -31,6 +33,12 @@ class PDODatabase
 		return $out;
 	}
 
+	public function sql2row($query, array $parameters = null, $keyfield = null)
+	{
+		$result = $this->sql2array($query, $parameters, $keyfield);
+		return array_shift($result);
+	}
+
 	/**
 	 * Возвращает значение из бд или null
 	 *
@@ -51,15 +59,25 @@ class PDODatabase
 	 * @param $parameters
 	 * @return PDOStatement
 	 */
-	private function query($query, $parameters)
+	public function query($query, $parameters = null)
 	{
+		$this->queryNum++;
 		$stmt = $this->pdo->prepare($query);
+		App::i()->log($this->dsn . ':' . $stmt->queryString ."\n" .'query parameters:'."\n" . ($parameters?print_r($parameters,1):''));
+		App::i()->_logger()->timing($this->dsn . ':' . $stmt->queryString .'['. $this->queryNum. ']', $stmt->queryString);
 		if ($stmt->execute($parameters)) {
+			App::i()->_logger()->timing($this->dsn . ':' . $stmt->queryString .'['. $this->queryNum. ']', $stmt->queryString);
 			return $stmt;
 		} else {
 			$errorInfo = $stmt->errorInfo();
+			App::i()->_logger()->timing($this->dsn . ':' . $stmt->queryString .'['. $this->queryNum. ']', $stmt->queryString);
 			throw new ApplicationException('Database error:' . array_pop($errorInfo));
 		}
+	}
+
+	public function lastId()
+	{
+		return $this->pdo->lastInsertId();
 	}
 
 

@@ -99,6 +99,23 @@ $pagesconfig['admin/catalog']['blocks'] = array(
 	),
 );
 /**
+ * Страница управления гео
+ */
+$pagesconfig['admin/geo'] = array();
+$pagesconfig['admin/geo']['layout'] = 'admin';
+$pagesconfig['admin/geo']['js'] = array();
+$pagesconfig['admin/geo']['css'] = array(
+	'admin'
+);
+$pagesconfig['admin/geo']['blocks'] = array(
+	'left' => array(
+		array('name' => 'admin', 'action' => 'list', 'mode' => 'admin_menu_items'),
+	),
+	'content' => array(
+		array('name' => 'admin', 'action' => 'list', 'mode' => 'geo'),
+	),
+);
+/**
  * Конфигурация умолчаний
  */
 $pagesconfig['default'] = array();

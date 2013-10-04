@@ -51,6 +51,25 @@ class App
 
 	/**
 	 *
+	 * @return null
+	 */
+	public function log($message)
+	{
+		$this->_logger()->log($message);
+		return null;
+	}
+
+	/**
+	 *
+	 * @return null
+	 */
+	public function stopLogging()
+	{
+		return null;
+	}
+
+	/**
+	 *
 	 * @param type $readmodule_name
 	 * @param type $readmodule_action
 	 * @param array $params
@@ -76,14 +95,6 @@ class App
 		return isset($this->write_params[$key]) ? $this->write_params[$key] : array();
 	}
 
-	/**
-	 *
-	 * @return null
-	 */
-	public function stopLogging()
-	{
-		return null;
-	}
 
 	/**
 	 * Какие данные запрашивают,и в каком виде хотят получить эти данные?
@@ -91,6 +102,7 @@ class App
 	 */
 	public function prepareResponseConfiguration()
 	{
+		App::i()->_logger()->timing('prepareResponseConfiguration');
 		$pC = $this->_responseConfiguration();
 		/**
 		 * Инициализируем с конфигом, определяем страницу
@@ -104,6 +116,7 @@ class App
 		 * Получаем список модулей для выполнения страницы
 		 */
 		$this->responseModules = $pC->getResponseModules($page_name);
+		App::i()->_logger()->timing('prepareResponseConfiguration');
 	}
 
 	public function executeWriteModules()
@@ -186,6 +199,7 @@ class App
 		if (!is_readable($layout))
 			throw new MisconfigurationException('cant open ' . $layout);
 		require $layout;
+		echo "\n\n".App::i()->_logger()->getHtmlLog();
 	}
 
 	private function getComponent($name)
@@ -213,11 +227,27 @@ class App
 	}
 
 	/**
+	 * @return Logger
+	 */
+	public function _logger()
+	{
+		return $this->getComponent('Logger');
+	}
+
+	/**
 	 * @return Catalog
 	 */
 	public function _catalog()
 	{
 		return $this->getComponent('Catalog');
+	}
+
+	/**
+	 * @return Language
+	 */
+	public function _language()
+	{
+		return $this->getComponent('Language');
 	}
 
 	/**

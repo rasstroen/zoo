@@ -6,6 +6,7 @@ function tp_admin_list_admin_menu_items(ModuleData $data)
 	<li><a href="<?php echo App::i()->_request()->getRequestUri() ?>catalog">Каталог</a></li>
 	<li><a href="<?php echo App::i()->_request()->getRequestUri() ?>theme">Темы</a></li>
 	<li><a href="<?php echo App::i()->_request()->getRequestUri() ?>client">Клиенты</a></li>
+	<li><a href="<?php echo App::i()->_request()->getRequestUri() ?>geo">Гео</a></li>
 	</ul><?php
 }
 
@@ -76,3 +77,56 @@ function _th_recursive_draw_admin_list_catalog_tree(CatalogItem $catalog, $catal
 
 	</li><?php
 }
+
+function tp_admin_list_geo(ModuleData $data)
+{
+	?>
+	<div>Данные по гео текущего пользователя:</div>
+	<pre><?php print_r($geo = $data->getRaw('current_geo'));?></pre>
+	<pre><?php print_r($geo->getFullPathArray());?></pre>
+
+	<ul class="districts"><?php
+	$geos = $data->getRaw('geo');
+
+	foreach ($geos[0] as $district) {
+		$country = GEO::$countries[intval($district['country_id'])];
+		?>
+		<li class="district"><?php echo htmlspecialchars($district['name']) ?>, <em
+			class="country"><?php echo htmlspecialchars($country) ?></em></li><?php
+		if (isset($geos[$district['id']])) {
+			?>
+			<ul class="regions"><?php
+			foreach ($geos[$district['id']] as $region) {
+				?>
+				<li class="region"><span class="id"><?php echo $region['id'];?></span><?php echo htmlspecialchars($region['name']) ?></li><?php
+				if (isset($geos[$region['id']])) {
+					?>
+					<ul class="regions"><?php
+					foreach ($geos[$region['id']] as $city) {
+						?>
+						<li class="region"><span class="id"><?php echo $city['id'];?></span><?php echo htmlspecialchars($city['name']) ?></li><?php
+					}
+					?></ul><?php
+				}
+			}
+			?></ul><?
+		}
+	}
+	?></ul><?php
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

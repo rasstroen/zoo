@@ -11,6 +11,8 @@ class Html_module extends Module
 	public function  method_show_header_logo()
 	{
 		$data = array();
+		$data['geo'] = App::i()->_geo()->getByIp();
+		$data['geos'] =App::i()->_geo()->getFullTree();
 		return $data;
 	}
 

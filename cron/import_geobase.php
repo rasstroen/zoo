@@ -31,7 +31,6 @@ mysql_query('set character_set_connection="utf8"', $db);
 mysql_query('set character_set_result="utf8"', $db);
 
 
-
 // проверяем наличие файла cities.txt в папке рядом с этим скриптом
 if(file_exists('cities.txt'))
 {
@@ -43,7 +42,7 @@ if(file_exists('cities.txt'))
         $row = iconv('windows-1251', 'utf-8', $row);
         if(preg_match($pattern, $row, $out))
         {
-            mysql_query("INSERT INTO `geo__cities` (`city_id`, `city`, `region`, `district`, `lat`, `lng`) VALUES('$out[1]', '$out[2]', '$out[3]', '$out[4]', '$out[5]', '$out[6]')");
+            mysql_query("REPLACE INTO `geo__cities` (`city_id`, `city`, `region`, `district`, `lat`, `lng`) VALUES('$out[1]', '$out[2]', '$out[3]', '$out[4]', '$out[5]', '$out[6]')");
         }        
     }   
     echo mysql_error(); 
@@ -63,7 +62,7 @@ if(file_exists('cidr_optim.txt'))
     {
         if(preg_match($pattern, $row, $out))
         {
-            mysql_query("INSERT INTO `geo__base` (`long_ip1`, `long_ip2`, `ip1`, `ip2`, `country`, `city_id`) VALUES('$out[1]', '$out[2]', '$out[3]', '$out[4]', '$out[5]', '$out[6]')");
+            mysql_query("REPLACE INTO `geo__base` (`long_ip1`, `long_ip2`, `ip1`, `ip2`, `country`, `city_id`) VALUES('$out[1]', '$out[2]', '$out[3]', '$out[4]', '$out[5]', '$out[6]')");
         }        
     }
     echo mysql_error();

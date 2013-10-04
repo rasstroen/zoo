@@ -17,6 +17,9 @@ class Map
 			) ,
 			'client' => array(
 				'' => 'admin/client'
+			),
+			'geo' => array(
+				'' => 'admin/geo'
 			)
 		),
 		'catalog' => array(

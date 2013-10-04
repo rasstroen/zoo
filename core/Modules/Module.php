@@ -23,7 +23,9 @@ abstract class Module {
         if (!method_exists($this, $method_name)) {
             throw new MisconfigurationException('no method ' . $method_name . ' exists in module ' . $this->configuration['name']);
         }
+	    App::i()->_logger()->timing($method_name);
         $this->data = $this->$method_name($this->configuration);
+	    App::i()->_logger()->timing($method_name);
     }
 
     function getResponseObject() {

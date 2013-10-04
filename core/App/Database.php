@@ -30,6 +30,8 @@ class Database
 		}
 		$options = array();
 		$dsn = 'mysql:host=' . $dbc['dbserver'] . ';dbname=' . $dbc['dbname'];
-		return $this->connections[$dbname] = new PDODatabase($dsn, $dbc['username'], $dbc['password'], $options);
+		$this->connections[$dbname] = new PDODatabase($dsn, $dbc['username'], $dbc['password'], $options);
+		$this->connections[$dbname]->query('SET NAMES utf8');
+		return $this->connections[$dbname];
 	}
 }

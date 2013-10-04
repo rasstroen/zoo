@@ -1,1 +1,0 @@
-cd /home/zoo/core/Classes/Geo/ && rm -f *.txt && rm -f *.tar.gz && wget http://ipgeobase.ru/files/db/Main/geo_files.tar.gz && tar xvf geo_files.tar.gz && php import_geobase.php

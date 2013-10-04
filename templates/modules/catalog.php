@@ -15,7 +15,6 @@ function tp_catalog_list_main_menu_items(ModuleData $data)
 
 function _th_recursive_draw_catalogue_main_menu(CatalogItem $catalog, $catalogues, $level = 1)
 {
-	print_r(App::i()->_geo()->getByIp());
 	?>
 	<li><a
 	href="<?php echo $catalog->getRelativeUrl() ?>"><?php echo htmlspecialchars($catalog->getTitle()); ?></a><?php
