@@ -71,7 +71,7 @@ class PDODatabase
 		} else {
 			$errorInfo = $stmt->errorInfo();
 			App::i()->_logger()->timing($this->dsn . ':' . $stmt->queryString .'['. $this->queryNum. ']', $stmt->queryString);
-			throw new ApplicationException('Database error:' . array_pop($errorInfo));
+			throw new ApplicationException('Database error:' . print_r($errorInfo,1));
 		}
 	}
 

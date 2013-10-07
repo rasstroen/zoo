@@ -6,7 +6,7 @@ class SellCommon extends Sell
 		return $this->rowData['title'];
 	}
 
-	public function getPrice()
+	public function getPrice($valuteId = false)
 	{
 		return max(0, min(10000000, (int)$this->load()->rowData['price']));
 	}
